@@ -1,6 +1,7 @@
 import numpy as np
 
 
+# skok jednostkowy
 class Skok_jedno:
 
     def __init__(self, A, t1, d, ts):

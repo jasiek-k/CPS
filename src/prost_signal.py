@@ -1,6 +1,7 @@
 import numpy as np
 
 
+# sygnał prostokątny
 class Prost_sygnal:
 
     def __init__(self, A, T, t1, d, kw):
@@ -13,10 +14,10 @@ class Prost_sygnal:
     def signal(self, t):
         k: int = 0
         check: bool = False
+        
         while check == False:
             x0 = self.kw * self.T + k * self.T + self.t1
             x1 = k * self.T + self.t1
-            #print(f"{t} {x0} {x1}")
             if x1 <= t < x0: 
                 check = True
                 return self.A
@@ -25,17 +26,19 @@ class Prost_sygnal:
                 return 0
             else:
                 k = k + 1
-           
 
+
+# sygnał prostokątny symetryczny 
 class Prost_sygnal_sym(Prost_sygnal):
 
     def signal(self, t):
         k: int = 0
         check: bool = False
+
         while check == False:
             x0 = self.kw * self.T + k * self.T + self.t1
             x1 = k * self.T + self.t1
-            #print(f"{t} {x0} {x1}")
+
             if x1 <= t < x0: 
                 check = True
                 return self.A
