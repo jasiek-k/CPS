@@ -7,11 +7,12 @@ from src.sin_signal import *
 
 class Signal_operations:
 
-    def __init__(self, obj):
+    def __init__(self, obj, f=1):
         self.obj = obj
+        self.f = f
 
     def n(self, t):
-        return t * self.obj.f
+        return t * self.f
     
     def x(self, n):
         #sin = Sin_sygnal_wyp_jedno(self.A, self.T, self.t1, self.d)

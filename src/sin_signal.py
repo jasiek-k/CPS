@@ -4,12 +4,11 @@ import numpy as np
 #sygnał sinusoidalny
 class Sin_sygnal:
 
-    def __init__(self, A, T, t1, d, f=1):
+    def __init__(self, A, T, t1, d):
         self.A = A
         self.T = T
         self.t1 = t1
         self.d = d
-        self.f = f
 
     def signal(self, t):
         return self.A * np.sin((2 * np.pi) / self.T * (t - self.t1))

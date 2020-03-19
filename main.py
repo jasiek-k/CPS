@@ -1,6 +1,7 @@
 from matplotlib import pyplot as plt 
 import numpy as np 
 import math
+
 from src.prost_signal import *
 from src.skok_signal import *
 from src.troj_signal import *
@@ -14,43 +15,55 @@ def signal_init():
     array = string.split(" ")
     signal = array[0] 
 
-    if signal == "S3":
-        sinus = Sin_sygnal(int(array[1]), int(array[2]), int(array[3]), int(array[4]), int(array[5]))
-        ops = Signal_operations(sinus)
+    if signal == "S1":
+        print()
+    elif signal == "S2":
+        print()
+    elif signal == "S3":
+        sinus = Sin_sygnal(int(array[1]), int(array[2]), int(array[3]), int(array[4]))
+        ops = Signal_operations(sinus, int(array[5]))
         ops.wykres()
         ops.histogram(int(array[6]))
     elif signal == "S4":
-        sinus = Sin_sygnal_wyp_jedno(int(array[1]), int(array[2]), int(array[3]), int(array[4]), int(array[5]))
-        ops = Signal_operations(sinus)
+        sinus = Sin_sygnal_wyp_jedno(int(array[1]), int(array[2]), int(array[3]), int(array[4]))
+        ops = Signal_operations(sinus, int(array[5]))
         ops.wykres()
         ops.histogram(int(array[6]))
     elif signal == "S5":
-        sinus = Sin_sygnal_wyp_dwu(int(array[1]), int(array[2]), int(array[3]), int(array[4]), int(array[5]))
-        ops = Signal_operations(sinus)
+        sinus = Sin_sygnal_wyp_dwu(int(array[1]), int(array[2]), int(array[3]), int(array[4]))
+        ops = Signal_operations(sinus, int(array[5]))
         ops.wykres()
         ops.histogram(int(array[6]))
     elif signal == "S6":
-        print("chuj3")
+        prosto = Prost_sygnal(int(array[1]), int(array[2]), int(array[3]), int(array[4]), int(array[5]))
+        ops = Signal_operations(prosto, int(array[6]))
+        ops.wykres()
+        ops.histogram(int(array[7]))
     elif signal == "S7":
-        print("chuj4")
+        prosto = Prost_sygnal_sym(int(array[1]), int(array[2]), int(array[3]), int(array[4]), int(array[5]))
+        ops = Signal_operations(prosto, int(array[6]))
+        ops.wykres()
+        ops.histogram(int(array[7]))
     elif signal == "S8":
-        print("chuj5")
+        troj = Troj_sygnal(int(array[1]), int(array[2]), int(array[3]), int(array[4]), int(array[5]))
+        ops = Signal_operations(troj, int(array[6]))
+        ops.wykres()
+        ops.histogram(int(array[7]))
     elif signal == "S9":
-        print("chuj6")
+        skok = Skok_jedno(int(array[1]), int(array[2]), int(array[3]), int(array[4]))
+        ops = Signal_operations(skok, int(array[5]))
+        ops.wykres()
+        ops.histogram(int(array[6]))
     elif signal == "S10":
-        print("chuj7")
+        impuls = Impuls_jedno(int(array[1]), int(array[2]), int(array[3]), int(array[4]), int(array[5]))
+        ops = Signal_operations(impuls, int(array[5]))
+        ops.wykres()
+        ops.histogram(int(array[6]))
     else: 
         print("Błędne argumenty funkcji")
         string = input("Podaj argumenty funkcji. (Szczegóły znajdziesz w README.md): ")
 
-
-#sinus_wyp = Sin_sygnal_wyp_dwu(3, 4, 0, 10, 1)
-
-#prost = Prost_sygnal(3, 4, 0, 10, 0.5)
-#sin = Signal_operations(sinus_wyp)
-#sin.wykres()
-
-#signal_init()
+signal_init()
 
 #print(ops.srednia())
 #print(ops.srednia_bezwgl())
