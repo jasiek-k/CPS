@@ -1,7 +1,7 @@
 import numpy as np
 
-    #t = n / f
 
+# impuls jednostkowy
 class Impuls_jedno:
 
     def __init__(self, A, n1, ns, l, f):
@@ -20,6 +20,8 @@ class Impuls_jedno:
     def signal(self, n):
         return self.A * self.x(n - self.ns)
 
+
+# szum impulsowy
 class Szum_impuls:
 
     def __init__(self, A, t1, d, f, p):

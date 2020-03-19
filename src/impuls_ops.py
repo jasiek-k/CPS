@@ -12,7 +12,7 @@ class Impuls_operations:
         self.ns = ns
         self.l = l
         self.f = f
-
+ 
     def t(self, n):
         return n / self.f
 
@@ -34,10 +34,9 @@ class Impuls_operations:
         plt.grid(True)
         plt.show() 
 
-    def histogram(self):
+    def histogram(self, bins):
         x = [21,22,23,4,5,6,77,8,9,10,31,32,33,34,35,36,37,18,49,50,100]
-        num_bins = 20
-        n, bins, patches = plt.hist(x, num_bins, facecolor='blue', alpha=0.5)
+        plt.hist(x, bins, facecolor='blue', alpha=0.5)
         plt.grid(True)
         plt.show()
     

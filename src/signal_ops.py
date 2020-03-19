@@ -1,4 +1,5 @@
 from matplotlib import pyplot as plt 
+from abc import ABC, abstractmethod
 import numpy as np
 
 from src.sin_signal import * 
@@ -6,22 +7,20 @@ from src.sin_signal import *
 
 class Signal_operations:
 
-    def __init__(self, f, A, T, t1, d):
-        self.f = f
-        self.A = A
-        self.T = T
-        self.t1 = t1
-        self.d = d
+    def __init__(self, obj):
+        self.obj = obj
 
     def n(self, t):
-        return t * self.f
-
+        return t * self.obj.f
+    
     def x(self, n):
-        sin = Sin_sygnal(self.A, self.T, self.t1, self.d)
-        return sin.signal(n)
-
+        #sin = Sin_sygnal_wyp_jedno(self.A, self.T, self.t1, self.d)
+        #return sin.signal(n)
+        return self.obj.signal(n)
+        
     def wykres(self):
-        x = np.arange(self.n(self.t1), self.n(self.t1 + self.d), 0.05)
+        x = np.arange(self.n(self.obj.t1), self.n(self.obj.t1 + self.obj.d), 0.05)
+        #x = np.arange(self.t1, self.t1 + self.d, 0.05)
         y = []
 
         for i in np.arange(len(x)):
@@ -42,31 +41,31 @@ class Signal_operations:
 
     def srednia(self):
         sum = 0 
-        for i in range(self.n(self.t1), self.n(self.t1 + self.d)):
+        for i in range(self.n(self.obj.t1), self.n(self.obj.t1 + self.obj.d)):
             sum += self.x(i)
             #print(f"{sum} {i}")
-        return (1/(self.n(self.t1 + self.d) - self.n(self.t1) + 1)) * sum 
+        return (1/(self.n(self.obj.t1 + self.obj.d) - self.n(self.obj.t1) + 1)) * sum 
 
     def srednia_bezwgl(self):
         sum = 0 
-        for i in range(self.n(self.t1), self.n(self.t1 + self.d)):
+        for i in range(self.n(self.obj.t1), self.n(self.obj.t1 + self.obj.d)):
             sum += np.fabs(self.x(i))
             #print(f"{sum} {i}")
-        return (1/(self.n(self.t1 + self.d) - self.n(self.t1) + 1)) * sum
+        return (1/(self.n(self.obj.t1 + self.obj.d) - self.n(self.obj.t1) + 1)) * sum
 
     def moc_srednia(self):
         sum = 0 
-        for i in range(self.n(self.t1), self.n(self.t1 + self.d)):
+        for i in range(self.n(self.obj.t1), self.n(self.obj.t1 + self.obj.d)):
             sum += self.x(i) * self.x(i)
             #print(f"{sum} {i}")
-        return (1/(self.n(self.t1 + self.d) - self.n(self.t1) + 1)) * sum
+        return (1/(self.n(self.obj.t1 + self.obj.d) - self.n(self.obj.t1) + 1)) * sum
 
     def wariancja(self):
         sum = 0 
-        for i in range(self.n(self.t1), self.n(self.t1 + self.d)):
+        for i in range(self.n(self.obj.t1), self.n(self.obj.t1 + self.obj.d)):
             sum += np.power(self.x(i) - self.srednia(), 2)
             #print(f"{sum} {i}")
-        return (1/(self.n(self.t1 + self.d) - self.n(self.t1) + 1)) * sum
+        return (1/(self.n(self.obj.t1 + self.obj.d) - self.n(self.obj.t1) + 1)) * sum
 
     def wart_skut(self):
         return np.sqrt(self.moc_srednia())
