@@ -1,7 +1,7 @@
 from matplotlib import pyplot as plt 
 import numpy as np
 
-from src.impuls import * 
+from src.impuls_signal import * 
 
 
 class Impuls_operations:
@@ -21,7 +21,7 @@ class Impuls_operations:
         return imp.signal(self.t(n))
 
     def wykres(self):
-        x = np.arange(self.t(self.n1), self.t(self.n1 + self.l), 0.5)
+        x = np.arange(self.t(self.n1), self.t(self.n1 + self.l), (1 / self.f))
         y = []
 
         for i in np.arange(len(x)):
@@ -31,7 +31,16 @@ class Impuls_operations:
         plt.xlabel("x axis caption") 
         plt.ylabel("y axis caption") 
         plt.scatter(x, y, 0.5) 
+        plt.grid(True)
         plt.show() 
+
+    def histogram(self):
+        x = [21,22,23,4,5,6,77,8,9,10,31,32,33,34,35,36,37,18,49,50,100]
+        num_bins = 20
+        n, bins, patches = plt.hist(x, num_bins, facecolor='blue', alpha=0.5)
+        plt.grid(True)
+        plt.show()
+    
     """
     def srednia(self):
         sum = 0 
@@ -63,5 +72,5 @@ class Impuls_operations:
 
     def wart_skut(self):
         return np.sqrt(self.moc_srednia())
+
     """
-    
