@@ -12,7 +12,7 @@ class Impuls_jedno:
         self.f = f
 
     def x(self, n):
-        if n == 0:
+        if int(n) == 0:
             return 1
         else:
             return 0

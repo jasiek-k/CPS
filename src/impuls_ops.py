@@ -6,70 +6,60 @@ from src.impuls_signal import *
 
 class Impuls_operations:
 
-    def __init__(self, A, n1, ns, l, f):
-        self.A = A
-        self.n1 = n1
-        self.ns = ns
-        self.l = l
-        self.f = f
- 
+    def __init__(self, obj, bins):
+        self.obj = obj
+        self.bins = bins
+         
     def t(self, n):
-        return n / self.f
+        return n / self.obj.f
 
     def x(self, n):
-        imp = Impuls_jedno(self.A, self.n1, self.ns, self.l, self.f)
-        return imp.signal(self.t(n))
+        return self.obj.signal(n)
 
     def wykres(self):
-        x = np.arange(self.t(self.n1), self.t(self.n1 + self.l), (1 / self.f))
+        x = np.arange(self.t(self.obj.n1), self.t(self.obj.n1 + self.obj.l), (1 / self.obj.f))
         y = []
-
+    
         for i in np.arange(len(x)):
             y.append(self.x(x[i]))
 
-        #plt.title("Matplotlib demo") 
+        plt.title("Wykres zależności amplitudy od czasu") 
         plt.xlabel("x axis caption") 
         plt.ylabel("y axis caption") 
-        plt.scatter(x, y, 0.5) 
+        plt.scatter(x, y, 10) 
         plt.grid(True)
         plt.show() 
 
-    def histogram(self, bins):
-        x = [21,22,23,4,5,6,77,8,9,10,31,32,33,34,35,36,37,18,49,50,100]
-        plt.hist(x, bins, facecolor='blue', alpha=0.5)
+    def histogram(self):
+        x = [self.srednia(), self.srednia_bezwgl(), self.moc_srednia(), self.wariancja(), self.wart_skut()]
+        plt.hist(x, self.bins, facecolor='blue', alpha=0.5)
         plt.grid(True)
         plt.show()
     
-    """
     def srednia(self):
         sum = 0 
-        for i in range(self.n(self.t1), self.n(self.t1 + self.d)):
+        for i in range(self.obj.n1, self.obj.n1 + self.obj.l):
             sum += self.x(i)
-            #print(f"{sum} {i}")
-        return (1/(self.n(self.t1 + self.d) - self.n(self.t1) + 1)) * sum 
+        return (1/(self.obj.l + 1)) * sum 
 
     def srednia_bezwgl(self):
         sum = 0 
-        for i in range(self.n(self.t1), self.n(self.t1 + self.d)):
+        for i in range(self.obj.n1, self.obj.n1 + self.obj.l):
             sum += np.fabs(self.x(i))
-            #print(f"{sum} {i}")
-        return (1/(self.n(self.t1 + self.d) - self.n(self.t1) + 1)) * sum
+        return (1/(self.obj.l + 1)) * sum 
 
     def moc_srednia(self):
         sum = 0 
-        for i in range(self.n(self.t1), self.n(self.t1 + self.d)):
+        for i in range(self.obj.n1, self.obj.n1 + self.obj.l):
             sum += self.x(i) * self.x(i)
-            #print(f"{sum} {i}")
-        return (1/(self.n(self.t1 + self.d) - self.n(self.t1) + 1)) * sum
+        return (1/(self.obj.l + 1)) * sum 
 
     def wariancja(self):
         sum = 0 
-        for i in range(self.n(self.t1), self.n(self.t1 + self.d)):
-            sum += np.power(self.x(i) - self.srednia(), 2)
+        for i in range(self.obj.n1, self.obj.n1 + self.obj.l):
+            sum += np.power((self.x(i) - self.srednia()), 2)
             #print(f"{sum} {i}")
-        return (1/(self.n(self.t1 + self.d) - self.n(self.t1) + 1)) * sum
-
+        return (1/(self.obj.l + 1)) * sum 
+    
     def wart_skut(self):
         return np.sqrt(self.moc_srednia())
-
-    """

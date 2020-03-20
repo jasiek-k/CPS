@@ -7,7 +7,7 @@ W zależności od wybranego wariantu należy sprecyzować parametry wywołania:
 [S3/S4/S5] [A] [T] [t1] [d] [bins] [f]
 [S6/S7/S8] [A] [T] [t1] [d] [kw] [bins] [f]
 [S9] [A] [t1] [d] [ts] [bins] [f] 
-[S10] [A] [ns] [n1] [l] [bins] [f]
+[S10] [A] [n1] [ns] [l] [bins] [f]  
 Gdzie:
 S1 - szum o rozkładzie jednostajnym
 S2 - szum gaussowski

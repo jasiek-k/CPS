@@ -7,9 +7,10 @@ from src.sin_signal import *
 
 class Signal_operations:
 
-    def __init__(self, obj, f=1):
+    def __init__(self, obj, bins, f=1):
         self.obj = obj
         self.f = f
+        self.bins = bins
 
     def n(self, t):
         return t * self.f
@@ -28,16 +29,16 @@ class Signal_operations:
         for i in np.arange(len(x)):
             y.append(self.x(x[i]))
 
-        #plt.title("Matplotlib demo") 
+        plt.title("Wykres zależności amplitudy od czasu") 
         plt.xlabel("x axis caption") 
         plt.ylabel("y axis caption") 
         plt.plot(x, y) 
         plt.grid(True)
         plt.show() 
 
-    def histogram(self, bins):
+    def histogram(self):
         x = [self.srednia(), self.srednia_bezwgl(), self.moc_srednia(), self.wariancja(), self.wart_skut()]
-        plt.hist(x, bins, facecolor='blue', alpha=0.5)
+        plt.hist(x, self.bins, facecolor='blue', alpha=0.5)
         plt.grid(True)
         plt.show()
 
