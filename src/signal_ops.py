@@ -22,6 +22,7 @@ class Signal_operations:
     def wykres(self):
         x = np.arange(self.n(self.obj.t1), self.n(self.obj.t1 + self.obj.d), 0.05)
         #x = np.arange(self.t1, self.t1 + self.d, 0.05)
+        print(f'{self.n(self.obj.t1)} {self.n(self.obj.t1 + self.obj.d)}')
         y = []
 
         for i in np.arange(len(x)):

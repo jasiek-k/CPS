@@ -4,10 +4,10 @@ Uruchamianie programu:
 >>> python main.py
 
 W zależności od wybranego wariantu należy sprecyzować parametry wywołania:
-[S3/S4/S5] [A] [T] [t1] [d] [f] [bins]
-[S6/S7/S8] [A] [T] [t1] [d] [kw] [f] [bins]
-[S9] [A] [t1] [d] [ts] [f] [bins]
-[S10] [A] [ns] [n1] [l] [f] [bins]
+[S3/S4/S5] [A] [T] [t1] [d] [bins] [f]
+[S6/S7/S8] [A] [T] [t1] [d] [kw] [bins] [f]
+[S9] [A] [t1] [d] [ts] [bins] [f] 
+[S10] [A] [ns] [n1] [l] [bins] [f]
 Gdzie:
 S1 - szum o rozkładzie jednostajnym
 S2 - szum gaussowski
