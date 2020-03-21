@@ -25,63 +25,55 @@ def signal_init():
             array.append('1')
         sinus = Sin_sygnal(float(array[1]), float(array[2]), int(array[3]), int(array[4]))
         ops = Signal_operations(sinus, int(array[5]), int(array[6]))
-        ops.wykres()
-        ops.histogram()
+        ops.prezentuj()
     elif signal == "S4":
         if len(array) < 7 or array[6] == "": 
             array.append('1')
         sinus = Sin_sygnal_wyp_jedno(float(array[1]), float(array[2]), int(array[3]), int(array[4]))
         ops = Signal_operations(sinus, int(array[5]), int(array[6]))
-        ops.wykres()
-        ops.histogram()
+        ops.prezentuj()
     elif signal == "S5":
         if len(array) < 7 or array[6] == "": 
             array.append('1')
         sinus = Sin_sygnal_wyp_dwu(float(array[1]), float(array[2]), int(array[3]), int(array[4]))
         ops = Signal_operations(sinus, int(array[5]), int(array[6]))
-        ops.wykres()
-        ops.histogram()
+        ops.prezentuj()
     elif signal == "S6":
         if len(array) < 8 or array[7] == "": 
             array.append('1')
         prosto = Prost_sygnal(float(array[1]), float(array[2]), int(array[3]), int(array[4]), float(array[5]))
         ops = Signal_operations(prosto, int(array[6]), int(array[7]))
-        ops.wykres()
-        ops.histogram()
+        ops.prezentuj()
     elif signal == "S7":
         if len(array) < 8 or array[7] == "": 
             array.append('1')
         prosto = Prost_sygnal_sym(float(array[1]), float(array[2]), int(array[3]), int(array[4]), float(array[5]))  
         ops = Signal_operations(prosto, int(array[6]), int(array[7]))
-        ops.wykres()
-        ops.histogram()
+        ops.prezentuj()
     elif signal == "S8":
         if len(array) < 8 or array[7] == "": 
             array.append('1')
         troj = Troj_sygnal(float(array[1]), float(array[2]), int(array[3]), int(array[4]), float(array[5]))
         ops = Signal_operations(troj, int(array[6]), int(array[7]))
-        ops.wykres()
-        ops.histogram()
+        ops.prezentuj()
     elif signal == "S9":
         if len(array) < 7 or array[6] == "": 
             array.append('1')
         skok = Skok_jedno(float(array[1]), int(array[2]), int(array[3]), int(array[4]))
         ops = Signal_operations(skok, int(array[5]), int(array[6]))
-        ops.wykres()
-        ops.histogram()
+        ops.prezentuj()
     elif signal == "S10":
         if len(array) < 7 or array[6] == "": 
             array.append('1')
         impuls = Impuls_jedno(float(array[1]), int(array[2]), int(array[3]), int(array[4]), int(array[6]))
         imp_ops = Impuls_operations(impuls, int(array[5]))
-        imp_ops.wykres()
-        imp_ops.histogram()
+        imp_ops.prezentuj()
     else: 
         print("Błędne argumenty funkcji")
     string = ''
     string = input("Podaj argumenty funkcji. (Szczegóły znajdziesz w README.md): ")
 
-#signal_init()
+signal_init()
 
 impuls = Impuls_jedno(2, -3, 0, 10, 2)
 imp_ops = Impuls_operations(impuls, 10)
