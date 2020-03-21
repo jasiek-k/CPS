@@ -2,8 +2,6 @@ from matplotlib import pyplot as plt
 import numpy as np
 import math
 
-from src.impuls_signal import * 
-
 
 class Impuls_operations:
 
@@ -14,14 +12,18 @@ class Impuls_operations:
         self.x_values = []
         self.y_values = []
         self.values = []
-        self.licz()
-        self.wywolaj()
+
+    def plik_zapisz(self, nazwa_pliku):
+        plik = open(f'{nazwa_pliku}', 'w')
+        plik.write(f'{self.signal} {self.obj.getFields()} {self.bins}\n')
+        plik.write(f'{self.y_values} \n')     
+        plik.close()
 
     def setYs(self, y_array):
         self.y_values = y_array
         self.x_values = np.arange(self.t(self.obj.n1), self.t(self.obj.n1 + self.obj.l), (1 / self.obj.f))
+        self.wywolaj()
 
-         
     def t(self, n):
         return n / self.obj.f
 
@@ -33,7 +35,7 @@ class Impuls_operations:
         y = []
         for i in np.arange(len(self.x_values)):
             y.append(self.x(self.x_values[i]))
-        self.y_values = round(y, 2)
+        self.y_values = y
     
     def wywolaj(self):
         values = []
@@ -52,20 +54,19 @@ class Impuls_operations:
         print(f"Wartość skuteczna: {self.values[4]}")
 
     def wykres(self):
+        plt.subplot(1, 2, 1)
         plt.title("Wykres zależności amplitudy od czasu") 
         plt.xlabel("x axis caption") 
-        plt.ylabel("y axis caption") 
+        plt.ylabel("y axis caption")
         plt.scatter(self.x_values, self.y_values, 10) 
         plt.grid(True)
-        plt.show() 
-
-    """
-    def histogram(self):
-        #x = [self.srednia(), self.srednia_bezwgl(), self.moc_srednia(), self.wariancja(), self.wart_skut()]
+        plt.subplot(1, 2, 2)
+        plt.title("Wykres zależności amplitudy od czasu") 
+        plt.xlabel("x axis caption") 
+        plt.ylabel("y axis caption")
         plt.hist(self.values, self.bins, facecolor='blue', alpha=0.5)
         plt.grid(True)
-        plt.show()
-    """
+        plt.show()  
 
     def srednia(self):
         sum = 0 
