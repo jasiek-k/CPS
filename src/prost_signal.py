@@ -31,7 +31,6 @@ class Prost_sygnal:
         return f'{self.A} {self.T} {self.t1} {self.d} {self.kw}'
 
 
-
 # sygnał prostokątny symetryczny 
 class Prost_sygnal_sym(Prost_sygnal):
 

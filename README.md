@@ -2,7 +2,7 @@ Uruchamianie programu:
 >>> python main.py
 
 W zależności od wybranego wariantu należy sprecyzować parametry wywołania:
-[S1]
+[S1] [A] [t1] [d] [bins] [f] ['T']
 [S3/S4/S5] [A] [T] [t1] [d] [bins] [f] ['T']
 [S6/S7/S8] [A] [T] [t1] [d] [kw] [bins] [f] ['T]
 [S9] [A] [t1] [d] [ts] [bins] [f] ['T']

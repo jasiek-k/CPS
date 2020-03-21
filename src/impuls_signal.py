@@ -1,5 +1,5 @@
 import numpy as np
-
+import random
 
 # impuls jednostkowy
 class Impuls_jedno:
@@ -38,4 +38,34 @@ class Szum_impuls:
         return f'{self.A} {self.t1} {self.d} {self.f} {self.p}'
 
 
+# szum o rozkładzie jednostajnym
+class Szum_jedno:
+
+    def __init__(self, A, t1, d):
+        self.A = A
+        self.t1 = t1
+        self.d = d
+
+    def getFields(self):
+        return f'{self.A} {self.t1} {self.d}'
     
+    def signal(self, t):
+        t = random.randint((-1) * self.A, self.A-1)
+        return t 
+
+    
+# szum gaussowski
+class Szum_gauss:
+
+    def __init__(self, A, t1, d):
+        self.A = A
+        self.t1 = t1
+        self.d = d
+
+    def getFields(self):
+        return f'{self.A} {self.t1} {self.d}'
+
+    def signal(self, t):
+        #t = self.A * random.gauss(0, 1)
+        t = random.gauss(0, 1)
+        return t

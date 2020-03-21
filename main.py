@@ -52,9 +52,43 @@ def signal_init():
         file_string = f'./files/{signal}_data'
         
     if signal == "S1":
-        print()
+        if len(array) < 6 or array[5] == "":
+            array.append('1')
+        if array[5] == "T":
+            array.append("T")
+            array[5] = 1
+
+        szum = Szum_jedno(float(array[1]), int(array[2]), int(array[3]))
+        ops = Signal_operations(signal, szum, int(array[4]), int(array[5]))
+
+        if read_file == True:
+            ops.setYs(y_array)
+        elif read_file == False: 
+            ops.licz()
+            ops.wywolaj()
+        if save_file == True:
+            ops.plik_zapisz(file_string)
+        ops.prezentuj()
+
     elif signal == "S2":
-        print()
+        if len(array) < 6 or array[5] == "":
+            array.append('1')
+        if array[5] == "T":
+            array.append("T")
+            array[5] = 1
+
+        szum = Szum_gauss(float(array[1]), int(array[2]), int(array[3]))
+        ops = Signal_operations(signal, szum, int(array[4]), int(array[5]))
+
+        if read_file == True:
+            ops.setYs(y_array)
+        elif read_file == False: 
+            ops.licz()
+            ops.wywolaj()
+        if save_file == True:
+            ops.plik_zapisz(file_string)
+        ops.prezentuj()
+
     elif signal == "S3":
         if len(array) < 7 or array[6] == "":
             array.append('1')
