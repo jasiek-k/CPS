@@ -25,13 +25,62 @@ def plik_czytaj(nazwa_pliku):
         y_array[i] = float(y_array[i])
 
     return [init_data, y_data]
-
+   
 
 def signal_init():
     string = input("Podaj argumenty funkcji. (Szczegóły znajdziesz w README.md): ")
     save_file = False
     read_file = False
+    dzialania = False
+   
+    if string.find("dodaj") != (-1):
+        dzialania = True
+        string = string.split(" ")
+        for i in range(len(string)):
+            if string[i] == "dodaj":
+                index = i
+        para1 = string[0:index]
+        para2 = string[index + 1:len(string) - 1]
+    elif string.find("odejmij") != (-1):
+        dzialania = True
+        string = string.split(" ")
+        for i in range(len(string)):
+            if string[i] == "odejmij":
+                index = i
+        para1 = string[0 : index]
+        para2 = string[index + 1:len(string) - 1]
+    elif string.find("mnoz") != (-1):
+        dzialania = True
+        string = string.split(" ")
+        for i in range(len(string)):
+            if string[i] == "mnoz":
+                index = i
+        para1 = string[0 : index]
+        para2 = string[index + 1:len(string) - 1]
+    elif string.find("dziel") != (-1):
+        dzialania = True
+        string = string.split(" ")
+        for i in range(len(string)):
+            if string[i] == "dziel":
+                index = i
+        para1 = string[0 : index]
+        para2 = string[index + 1:len(string) - 1]
 
+    if dzialania == True:
+        counter = 2
+    else: 
+        counter = 1
+
+    for i in range(counter):
+        if i == 1 and dzialania == True:
+            string = " "
+            string = string.join(para1)
+            print(string)
+        if i == 2 and dzialania == True:
+            string = " "
+            string = string.join(para2)
+            print(string)
+    """
     if string.find("R") != (-1):
         read_file = True
         read_string = string.translate({ord('R'): None})
@@ -46,7 +95,7 @@ def signal_init():
     
     array = string.split(" ")
     signal = array[0] 
-    
+ 
     if string.find("T") != (-1):
         save_file = True
         file_string = f'./files/{signal}_data'
@@ -241,7 +290,7 @@ def signal_init():
         print("Błędne argumenty funkcji")
     #string = ''
     #string = input("Podaj argumenty funkcji. (Szczegóły znajdziesz w README.md): ")
-    
+    """
 def main():
     signal_init()
 
