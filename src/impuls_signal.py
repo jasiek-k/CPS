@@ -20,6 +20,9 @@ class Impuls_jedno:
     def signal(self, n):
         return self.A * self.x(n - self.ns)
 
+    def getFields(self):
+        return f'{self.A} {self.n1} {self.ns} {self.l} {self.f}'
+
 
 # szum impulsowy
 class Szum_impuls:
@@ -30,5 +33,9 @@ class Szum_impuls:
         self.d = d
         self.f = f
         self.p = p
+
+    def getFields(self):
+        return f'{self.A} {self.t1} {self.d} {self.f} {self.p}'
+
 
     

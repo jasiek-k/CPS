@@ -27,6 +27,10 @@ class Prost_sygnal:
             else:
                 k = k + 1
 
+    def getFields(self):
+        return f'{self.A} {self.T} {self.t1} {self.d} {self.kw}'
+
+
 
 # sygnał prostokątny symetryczny 
 class Prost_sygnal_sym(Prost_sygnal):

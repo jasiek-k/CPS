@@ -17,3 +17,6 @@ class Skok_jedno:
             return (0.5 * self.A)
         else: 
             return 0
+
+    def getFields(self):
+        return f'{self.A} {self.t1} {self.d} {self.ts}'

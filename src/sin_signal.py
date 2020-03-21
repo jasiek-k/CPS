@@ -13,6 +13,8 @@ class Sin_sygnal:
     def signal(self, t):
         return self.A * np.sin((2 * np.pi) / self.T * (t - self.t1))
 
+    def getFields(self):
+        return f'{self.A} {self.T} {self.t1} {self.d}'
 
 #sygnał sinusoidalny wyprostowany jednopołówkowo
 class Sin_sygnal_wyp_jedno(Sin_sygnal):

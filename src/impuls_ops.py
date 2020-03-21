@@ -1,12 +1,14 @@
 from matplotlib import pyplot as plt 
 import numpy as np
+import math
 
 from src.impuls_signal import * 
 
 
 class Impuls_operations:
 
-    def __init__(self, obj, bins):
+    def __init__(self, signal, obj, bins):
+        self.signal = signal
         self.obj = obj
         self.bins = bins
         self.x_values = []
@@ -14,6 +16,11 @@ class Impuls_operations:
         self.values = []
         self.licz()
         self.wywolaj()
+
+    def setYs(self, y_array):
+        self.y_values = y_array
+        self.x_values = np.arange(self.t(self.obj.n1), self.t(self.obj.n1 + self.obj.l), (1 / self.obj.f))
+
          
     def t(self, n):
         return n / self.obj.f
@@ -26,7 +33,7 @@ class Impuls_operations:
         y = []
         for i in np.arange(len(self.x_values)):
             y.append(self.x(self.x_values[i]))
-        self.y_values = y
+        self.y_values = round(y, 2)
     
     def wywolaj(self):
         values = []
@@ -52,12 +59,14 @@ class Impuls_operations:
         plt.grid(True)
         plt.show() 
 
+    """
     def histogram(self):
         #x = [self.srednia(), self.srednia_bezwgl(), self.moc_srednia(), self.wariancja(), self.wart_skut()]
         plt.hist(self.values, self.bins, facecolor='blue', alpha=0.5)
         plt.grid(True)
         plt.show()
-    
+    """
+
     def srednia(self):
         sum = 0 
         for i in range(self.obj.n1, self.obj.n1 + self.obj.l):
@@ -89,13 +98,6 @@ class Impuls_operations:
     def prezentuj(self):
             self.raport()
             self.wykres()
-            self.histogram()
+            #self.histogram()
 
-    def plik_czytaj(self):
-        plik = open('nazwa_pliku')
-        try:
-            tekst = plik.read()
-        finally:
-            plik.close()
-
-        print(tekst)
+    

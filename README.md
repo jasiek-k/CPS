@@ -1,13 +1,12 @@
-# CPS
-
 Uruchamianie programu:
 >>> python main.py
 
 W zależności od wybranego wariantu należy sprecyzować parametry wywołania:
-[S3/S4/S5] [A] [T] [t1] [d] [bins] [f]
+[S3/S4/S5] [A] [T] [t1] [d] [bins] [f] ['T']
 [S6/S7/S8] [A] [T] [t1] [d] [kw] [bins] [f]
 [S9] [A] [t1] [d] [ts] [bins] [f] 
 [S10] [A] [n1] [ns] [l] [bins] [f]  
+['R'] ['nazwa_pliku'] 
 Gdzie:
 S1 - szum o rozkładzie jednostajnym
 S2 - szum gaussowski
@@ -20,7 +19,10 @@ S8 - sygnał trójkątny
 S9 - skok jednostkowy
 S10 - impuls jednostkowy
 S11 - szum impulsowy
+
 bins - liczba przedziałów histogramu 
+'T' - zapisz wyniku operacji do pliku (należy opuścić jeśli wynik ma nie zostać zapisany)
+'R' - operuj na wartościach wczytanych z pliku binarnego
 
 Przykładowe wywołanie programu:
 

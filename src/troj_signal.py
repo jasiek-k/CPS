@@ -27,3 +27,6 @@ class Troj_sygnal:
                 return (((-1) * self.A / (self.T * (1 - self.kw))) * (t - k * self.T - self.t1)) + (self.A / (1 - self.kw))
             else:
                 k = k + 1
+
+    def getFields(self):
+        return f'{self.A} {self.T} {self.t1} {self.d} {self.kw}'
