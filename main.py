@@ -13,18 +13,20 @@ from src.impuls_ops import *
 from src.dzialania import *
 
 
-
 def plik_czytaj(nazwa_pliku):
     init_data = lc.getline(nazwa_pliku, 1)
     y_data = lc.getline(nazwa_pliku, 2)
 
     y_data = y_data.translate({ord('['): None})
     y_data = y_data.translate({ord(']'): None})
-    y_array = y_data.split(", ")
+    #print(y_data)
 
+    y_array = y_data.split(", ")
+    #print(y_array)
+    
     for i in range(len(y_array)):
         y_array[i] = float(y_array[i])
-
+    
     return [init_data, y_data]
    
 # Attention -> ostry młyn poniżej
@@ -33,29 +35,46 @@ def signal_init():
     string_copy = string
     save_file = False
     save_op = False
+    read_op = False
     read_file = False
     dzialania = False
     dzialanie = ""
     op_f = 0
 
+    if string.find("R") != (-1) and string.count("S") == 2:
+        read_op = True
+        read_string = string.translate({ord("R"): None})
+        read_string = read_string.translate({ord(" "): None})
+        data = plik_czytaj(read_string)
+        #print(data)
+        string = data[0].translate({ord('\n'): None})
+        y_array = data[1].split(', ')
+         
+        for i in range(len(y_array)):
+            y_array[i] = float(y_array[i])
+        #print(string)
+
     if string.find("Z") != (-1):
         save_op = True
         string = string.translate({ord('Z'): None})
 
-   
     if string.find("dodaj") != (-1):
         dzialania = True
         dzialanie = "dodaj"
         string = string.split(" ")
 
-        print(string)
+        #print(string)
         for i in range(len(string)):
             if string[i] == "dodaj":
                 index = i
         para1 = string[0:index]
-        para2 = string[index + 1:len(string) - 2]
-        op_f = int(string[len(string) - 2])
-        print(op_f)
+        #print(string)
+        if save_op == True:
+            para2 = string[index + 1:len(string) - 2]
+            op_f = int(string[len(string) - 2])
+        else:
+            para2 = string[index + 1:len(string) - 1]
+            op_f = int(string[len(string) - 1])
 
     elif string.find("odejmij") != (-1):
         dzialania = True
@@ -65,8 +84,12 @@ def signal_init():
             if string[i] == "odejmij":
                 index = i
         para1 = string[0 : index]
-        para2 = string[index + 1:len(string) - 2]
-        op_f = int(string[len(string) - 2])
+        if save_op == True:
+            para2 = string[index + 1:len(string) - 2]
+            op_f = int(string[len(string) - 2])
+        else:
+            para2 = string[index + 1:len(string) - 1]
+            op_f = int(string[len(string) - 1])
 
     elif string.find("mnoz") != (-1):
         dzialania = True
@@ -76,8 +99,12 @@ def signal_init():
             if string[i] == "mnoz":
                 index = i
         para1 = string[0 : index]
-        para2 = string[index + 1:len(string) - 2]
-        op_f = int(string[len(string) - 2])
+        if save_op == True:
+            para2 = string[index + 1:len(string) - 2]
+            op_f = int(string[len(string) - 2])
+        else:
+            para2 = string[index + 1:len(string) - 1]
+            op_f = int(string[len(string) - 1])
 
     elif string.find("dziel") != (-1):
         dzialania = True
@@ -87,8 +114,12 @@ def signal_init():
             if string[i] == "dziel":
                 index = i
         para1 = string[0 : index]
-        para2 = string[index + 1:len(string) - 2]
-        op_f = int(string[len(string) - 2])
+        if save_op == True:
+            para2 = string[index + 1:len(string) - 2]
+            op_f = int(string[len(string) - 2])
+        else:
+            para2 = string[index + 1:len(string) - 1]
+            op_f = int(string[len(string) - 1])
 
 
     if dzialania == True:
@@ -101,11 +132,11 @@ def signal_init():
         if i == 0 and dzialania == True:
             string = " "
             string = string.join(para1)
-            print(string)
+            #print(string)
         if i == 1 and dzialania == True:
             string = " "
             string = string.join(para2)
-            print(string)
+            #print(string)
    
         if string.find("R") != (-1):
             read_file = True
@@ -345,25 +376,25 @@ def signal_init():
     
     if dzialania == True:
         dzialaj = Dzialania(objs[0], objs[1], op_f, string_copy)
-
-        if dzialanie == "dodaj":
-            dzialaj.dodaj()
-        elif dzialanie == "odejmij":
-            dzialaj.odejmij()
-        elif dzialanie == "mnoz":
-            dzialaj.mnoz()
-        else:
-            dzialaj.dziel()
+        if read_op == True:
+            dzialaj.setYs(y_array)
+        elif read_op == False:
+            if dzialanie == "dodaj":
+                dzialaj.dodaj()
+            elif dzialanie == "odejmij":
+                dzialaj.odejmij()
+            elif dzialanie == "mnoz":
+                dzialaj.mnoz()
+            elif dzialanie == "dziel":
+                dzialaj.dziel()
         #dzialaj.print()
+        #print(save_op)
         if save_op == True:
             dzialaj.plik_zapisz(f"./files/{dzialaj.obj1.signal}_{dzialaj.obj2.signal}_data")
+        dzialaj.print()
         dzialaj.wykres()
        
-    #string = ''
-    #string = input("Podaj argumenty funkcji. (Szczegóły znajdziesz w README.md): ")
-
-
-
+   
 
 
 

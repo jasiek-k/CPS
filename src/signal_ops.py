@@ -57,40 +57,40 @@ class Signal_operations:
     def wykres(self):
         plt.subplot(1, 2, 1)
         plt.title("Wykres zależności amplitudy od czasu") 
-        plt.xlabel("x axis caption") 
-        plt.ylabel("y axis caption")
+        plt.xlabel("t[s]") 
+        plt.ylabel("A")
         plt.plot(self.x_values, self.y_values) 
         plt.grid(True)
         plt.subplot(1, 2, 2)
-        plt.title("Wykres zależności amplitudy od czasu") 
-        plt.xlabel("x axis caption") 
-        plt.ylabel("y axis caption")
-        plt.hist(self.values, self.bins, facecolor='blue', alpha=0.5)
+        plt.title("Histogram") 
+        plt.xlabel("A") 
+        plt.ylabel("Liczba wystąpień")
+        plt.hist(self.y_values, self.bins, range = (math.floor(min(self.y_values)), math.ceil(max(self.y_values))), facecolor = 'blue', alpha = 0.5)
         plt.grid(True)
         plt.show() 
 
     def srednia(self):
         sum = 0 
-        for i in range(self.n(self.obj.t1), self.n(self.obj.t1 + self.obj.d)):
+        for i in np.arange(self.n(self.obj.t1), self.n(self.obj.t1 + self.obj.d), (1 / self.f)):
             sum += self.x(i)
             #print(f"{sum} {i}")
         return (1/(self.n(self.obj.t1 + self.obj.d) - self.n(self.obj.t1) + 1)) * sum 
 
     def srednia_bezwgl(self):
         sum = 0 
-        for i in range(self.n(self.obj.t1), self.n(self.obj.t1 + self.obj.d)):
+        for i in np.arange(self.n(self.obj.t1), self.n(self.obj.t1 + self.obj.d), (1 / self.f)):
             sum += np.fabs(self.x(i))
         return (1/(self.n(self.obj.t1 + self.obj.d) - self.n(self.obj.t1) + 1)) * sum
 
     def moc_srednia(self):
         sum = 0 
-        for i in range(self.n(self.obj.t1), self.n(self.obj.t1 + self.obj.d)):
+        for i in np.arange(self.n(self.obj.t1), self.n(self.obj.t1 + self.obj.d), (1 / self.f)):
             sum += self.x(i) * self.x(i)
         return (1/(self.n(self.obj.t1 + self.obj.d) - self.n(self.obj.t1) + 1)) * sum
 
     def wariancja(self):
         sum = 0 
-        for i in range(self.n(self.obj.t1), self.n(self.obj.t1 + self.obj.d)):
+        for i in np.arange(self.n(self.obj.t1), self.n(self.obj.t1 + self.obj.d), (1 / self.f)):
             sum += np.power(self.x(i) - self.srednia(), 2)
         return (1/(self.n(self.obj.t1 + self.obj.d) - self.n(self.obj.t1) + 1)) * sum
 
