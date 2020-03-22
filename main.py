@@ -391,16 +391,9 @@ def signal_init():
         #print(save_op)
         if save_op == True:
             dzialaj.plik_zapisz(f"./files/{dzialaj.obj1.signal}_{dzialaj.obj2.signal}_data")
-        dzialaj.print()
+        #dzialaj.print()
         dzialaj.wykres()
        
-   
-
-
-
-
-
-
 signal_init()
 
 

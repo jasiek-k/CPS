@@ -66,6 +66,6 @@ class Szum_gauss:
         return f'{self.A} {self.t1} {self.d}'
 
     def signal(self, t):
-        #t = self.A * random.gauss(0, 1)
-        t = random.gauss(0, 1)
+        t = self.A * random.gauss(0, 1)
+        #t = random.gauss(0, 1)
         return t
