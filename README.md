@@ -1,7 +1,7 @@
-Uruchamianie programu:
->>> python main.py
-
-W zależności od wybranego wariantu należy sprecyzować parametry wywołania:
+1. Uruchamianie programu:
+> python main.py
+---
+2. W zależności od wybranego wariantu należy sprecyzować parametry wywołania:
 [S1/S2] [A] [t1] [d] [bins] [f] ['T']
 [S3/S4/S5] [A] [T] [t1] [d] [bins] [f] ['T']
 [S6/S7/S8] [A] [T] [t1] [d] [kw] [bins] [f] ['T']
@@ -28,16 +28,23 @@ bins - liczba przedziałów histogramu
 'T' - zapisz wyniku operacji do pliku (należy opuścić jeśli wynik ma nie zostać zapisany)
 'R' - operuj na wartościach wczytanych z pliku binarnego
 'Z' - zapisz wyniku operacji do pliku - flaga dotyczy jedynie wyniku operacji na 2 sygnałach!
-
-Przykładowe wywołanie programu:
-
-Struktura projektu 
-./src/
+'nazwa_pliku' - cała ścieżka jest potrzebna jeśli plik jest w innym katalogu niż main.py, rozszerzenie zbędne 
+---
+3. Przykładowe wywołania programu:
+S9 3 -1 6 0 5 1 T
+S9 3 -1 6 0 5 1 odejmij S3 2 2 2 10 5 1 20 Z
+S3 2 2 2 10 5 1 dodaj S9 3 -1 6 0 5 1 20 Z
+---
+4. Struktura projektu 
+./src/ - pliki klas sygnałów oraz operacji z nich korzystających
     > sin_signal - sygnał sin, sin wyprostowany jednopołówkowo i dwupołówkowo
-    > impuls_signal - impuls jednostkowy, szum impulsowy
+    > impuls_signal - impuls jednostkowy i wszystkie szumy
     > prost_signal - sygnał prostokątny i prostokątny symetryczny
     > skok_signal - skok jednostkowy
     > troj_signal - sygnał trójkątny
     > impuls_ops - zbiór funkcji przeznaczonych dla przetwarzania impulsów
     > signal_ops - zbiór funkcji przeznaczonych dla przetwarzania sygnałów
-./files/
+    > dzialania - zbiór funkcji przeznaczonych dla operowania na 2 sygnałach (dodawanie/odejmowanie etc.)
+./files/ - pliki generowane przez program, stanowią one zapis wcześniejszych operacji. Mogą być wykorzystywane do testowania
+    > SX_data - pliki operacji na pojedynczym sygnale (gdzie SX - numer sygnału)
+    > SX_SY_data - pliki operacji na 2 sygnałach
