@@ -75,19 +75,8 @@ class Signal_Cont:
             intervals_values.append(tmpVal)
             tmpVal += quant_interval
         intervals_values.append(tmpVal)
-        print(intervals_values)
         self.quant_y = []
 
         for v in self.y_values:
             q = min(intervals_values, key=lambda x: abs(x-v))
             self.quant_y.append(q)
-            # for i in range(self.quantization_level - 1):
-            #     if x >= intervals_values[i] and x <= intervals_values[i+1]:
-            #         d1 = abs(x-intervals_values[i])
-            #         d2 = abs(x-intervals_values[i+1])
-            #         if d1 > d2 or d1 == d2:
-            #             self.quant_y.append(intervals_values[i])
-            #             break
-            #         elif d2 > d1:
-            #             self.quant_y.append(intervals_values[i+1])
-            #             break
