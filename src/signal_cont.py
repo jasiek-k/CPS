@@ -2,6 +2,8 @@ from matplotlib import pyplot as plt
 import numpy as np
 import math
 
+from src.conversion_measures import *
+
 
 class Signal_Cont:
     def __init__(self, ioo, sampling_frequency, quantization_level):
@@ -10,6 +12,8 @@ class Signal_Cont:
         self.y_values = ioo.y_values
         self.sampling_frequency = sampling_frequency
         self.quantization_level = quantization_level
+
+        self.y_measure_sampling = []
 
     def wykres(self):
         self.sampling()
@@ -49,7 +53,11 @@ class Signal_Cont:
         while i < len(self.x_values):
             self.x_samples.append(self.x_values[i])
             self.y_samples.append(self.y_values[i])
+            self.y_measure_sampling.append(self.y_values[i])
             i += distance_floor
+
+        print("============ WARTOSCI MIAR DLA PROBKOWANIA ===========")
+        self.showMeasures(self.y_samples, self.y_measure_sampling)
 
     def quantization(self):
         maxAmplitude = self.y_samples[0]
@@ -80,3 +88,22 @@ class Signal_Cont:
         for v in self.y_values:
             q = min(intervals_values, key=lambda x: abs(x-v))
             self.quant_y.append(q)
+
+        print("============ WARTOSCI MIAR DLA KWANTOWANIA ===========")
+        self.showMeasures(self.y_samples, self.quant_y)
+
+    def showMeasures(self, x, x_dash):
+        print("Mean Square Error MSE:" + str(MSE(x, x_dash)))
+        snr = SNR(x, x_dash)
+        if (snr[0]) == True:
+            print("Signal to Noise Ratio SNR:" + str(snr[1]))
+        else:
+            print("Signal to Noise Ratio SNR: ---")
+        # print("Signal to Noise Ratio SNR:" + str(SNR(x, x_dash)))
+        # snr2 = SNR2(x, x_dash)
+        # if (snr2[0]) == True:
+        #     print("Signal to Noise Ratio SNR2:" + str(snr2[1]))
+        # else:
+        #     print("Signal to Noise Ratio SNR2: ---")
+        # print("Signal to Noise Ratio SNR:" + str(SNR(x, x_dash)))
+        print("Maximum Difference:" + str(MD(x, x_dash)))

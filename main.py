@@ -27,12 +27,15 @@ if(mode == "DAC"):
     print("Dostepne metody rekonstrukcji sygnalu:")
     print("[r1] zero-order hold")
     print("[r2] first-orded hold")
-    print("[r3] rekonstrukcja w oparciu o funkcje sine")
+    print("[r3] rekonstrukcja w oparciu o funkcje sinc")
     reconstruction_method = input(
         "Wybierz metode rekonsturkcji podajac oznaczenie z kwadratowych nawiasow: ")
     # samples_amount = int(input("Podaj ilosc probek generowanego sygnalu: "))
+    samples = 0
     ops = signal_init("dac")
-    sig = Signal_Disc(ops, reconstruction_method)
+    if reconstruction_method == 'r3':
+        samples = int(input("Podaj liczbe uwzglednianych probek: "))
+    sig = Signal_Disc(ops, reconstruction_method, samples)
     sig.wykres()
 
 if mode != "DAC" and mode != "ADC":
