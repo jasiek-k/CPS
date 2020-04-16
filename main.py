@@ -16,7 +16,7 @@ mode = sys.argv[1]
 
 if(mode == "ADC"):
     print("Tryb konwertera analogowo-cyfrowego (Analog to Digital)")
-    sampling_frequency = (int)(input("Podaj czestotliwosc probkowania: "))
+    sampling_frequency = (float)(input("Podaj czestotliwosc probkowania: "))
     quantization_level = (int)(input("Podaj prog kwantyzacji: "))
     ops = signal_init("adc")
     sig = Signal_Cont(ops, sampling_frequency, quantization_level)

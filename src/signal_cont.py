@@ -99,11 +99,9 @@ class Signal_Cont:
             print("Signal to Noise Ratio SNR:" + str(snr[1]))
         else:
             print("Signal to Noise Ratio SNR: ---")
-        # print("Signal to Noise Ratio SNR:" + str(SNR(x, x_dash)))
-        # snr2 = SNR2(x, x_dash)
-        # if (snr2[0]) == True:
-        #     print("Signal to Noise Ratio SNR2:" + str(snr2[1]))
-        # else:
-        #     print("Signal to Noise Ratio SNR2: ---")
-        # print("Signal to Noise Ratio SNR:" + str(SNR(x, x_dash)))
+        snr2 = SNR2(x, x_dash)
+        if (snr2[0]) == True:
+            print("Signal to Noise Ratio SNR2:" + str(snr2[1]))
+        else:
+            print("Signal to Noise Ratio SNR2: ---")
         print("Maximum Difference:" + str(MD(x, x_dash)))

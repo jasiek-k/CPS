@@ -29,7 +29,6 @@ def SNR(x, x_dash):
         denominator += tmp
         tmp = 0.0
 
-    absFraction = abs(numerator/denominator)
     if denominator == 0 or numerator == 0:
         return False, 0.0
     else:
